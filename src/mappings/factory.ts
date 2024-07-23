@@ -52,7 +52,7 @@ export function handlePoolCreated(event: PoolCreated): void {
     let decimals = fetchTokenDecimals(event.params.token0)
 
     // bail if we couldn't figure out the decimals
-    if (decimals === null) {
+    if (decimals.equals(ZERO_BI)) {
       log.debug('mybug the decimal on token 0 was null', [])
       return
     }
@@ -78,8 +78,8 @@ export function handlePoolCreated(event: PoolCreated): void {
     token1.totalSupply = fetchTokenTotalSupply(event.params.token1)
     let decimals = fetchTokenDecimals(event.params.token1)
     // bail if we couldn't figure out the decimals
-    if (decimals === null) {
-      log.debug('mybug the decimal on token 0 was null', [])
+    if (decimals.equals(ZERO_BI)) {
+      log.debug('mybug the decimal on token 1 was null', [])
       return
     }
     token1.decimals = decimals
